@@ -15,4 +15,4 @@ Paradise Nursery is a comprehensive e-commerce web application built using React
 - Redux Toolkit
 - React-Redux
 - CSS3 (Responsive Design)
-- Vite
+- Vite Mchezo
