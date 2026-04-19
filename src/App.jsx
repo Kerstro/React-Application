@@ -11,7 +11,7 @@ function LandingPage({ onGetStarted }) {
     <div className="landing-page">
       <div className="landing-content">
         <h1>🌿 Paradise Nursery</h1>
-        <p>Bring nature into your home with our handpicked collection of beautiful houseplants.</p>
+        <p>Bring nature into your home with our handpicked collection.</p>
         <button className="get-started-btn" onClick={onGetStarted}>
           Get Started
         </button>
@@ -21,23 +21,18 @@ function LandingPage({ onGetStarted }) {
 }
 
 function App() {
-  const [page, setPage] = useState('landing'); // landing | products | cart | about
+  const [page, setPage] = useState('landing');
+
+  const handleNavigate = (target) => setPage(target);
 
   return (
     <Provider store={store}>
-      {page === 'landing' && (
-        <LandingPage onGetStarted={() => setPage('products')} />
-      )}
-      {page !== 'landing' && (
-        <>
-          <ProductList
-            currentPage={page}
-            onNavigate={setPage}
-          />
-          {page === 'cart' && <CartItem onContinueShopping={() => setPage('products')} />}
-          {page === 'about' && <AboutUs />}
-        </>
-      )}
+      <div className="app-container">
+        {page === 'landing' && <LandingPage onGetStarted={() => setPage('products')} />}
+        {page === 'products' && <ProductList onNavigate={handleNavigate} />}
+        {page === 'cart' && <CartItem onContinueShopping={() => setPage('products')} onNavigate={handleNavigate} />}
+        {page === 'about' && <AboutUs />}
+      </div>
     </Provider>
   );
 }
